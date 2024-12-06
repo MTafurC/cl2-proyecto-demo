@@ -28,13 +28,13 @@ public class LanguageController {
      */
     @GetMapping("/languages")
     public String listLanguages(Model model) {
-        // Obtiene la lista de idiomas desde el servicio
+
         List<Language> languages = languageService.getAllLanguages();
 
-        // Agrega la lista de idiomas al modelo
+
         model.addAttribute("languages", languages);
 
-        // Devuelve el nombre del template para mostrar la lista
-        return "languages/list"; // Verifica que este template exista en tu carpeta de templates
+
+        return "languages/list";
     }
 }

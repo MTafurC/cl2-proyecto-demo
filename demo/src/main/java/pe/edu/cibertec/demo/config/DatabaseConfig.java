@@ -25,13 +25,13 @@ public class DatabaseConfig {
     public HikariDataSource hikariDataSource() {
         HikariConfig config = new HikariConfig();
 
-        // Configurar la conexión a la base de datos
+
         config.setJdbcUrl(dbFilmUrl);
         config.setUsername(dbFilmUser);
         config.setPassword(dbFilmPass);
         config.setDriverClassName(dbFilmDriver);
 
-        // Configurar propiedades del pool de conexiones
+
         config.setMaximumPoolSize(20);
         config.setMinimumIdle(5);
         config.setIdleTimeout(300000); // 5 minutos

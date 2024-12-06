@@ -2,9 +2,7 @@ package pe.edu.cibertec.demo.dto;
 
 import java.util.List;
 
-/**
- * DTO para representar los detalles de una película.
- */
+
 public class FilmDetailDTO {
     private Long filmId;                 // ID único de la película
     private String title;                // Título de la película
@@ -21,7 +19,7 @@ public class FilmDetailDTO {
     private List<Long> categoryIds;      // Lista de IDs de categorías
     private String categories;           // Categorías asociadas a la película (como texto)
 
-    // Constructor completo
+
     public FilmDetailDTO(Long filmId, String title, String description, Integer releaseYear,
                          Integer rentalDuration, Double rentalRate, Integer length,
                          Double replacementCost, String rating, String specialFeatures,
@@ -42,7 +40,7 @@ public class FilmDetailDTO {
         this.categories = categories;
     }
 
-    // Getters y Setters
+
     public Long getFilmId() {
         return filmId;
     }

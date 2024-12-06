@@ -40,22 +40,7 @@ public class FilmServiceImpl implements FilmService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-/*
-    @Override
-    @Cacheable("films")
-    public List<FilmListDTO> getAllFilms() {
-        return filmRepository.findAll().stream()
-                .map(film -> new FilmListDTO(
-                        film.getFilmId(),
-                        film.getTitle(),
-                        film.getLanguage().getName(),
-                        film.getRentalDuration(),
-                        film.getRentalRate()))
-                .collect(Collectors.toList());
-    }
 
-
- */
 
     @Override
     @Cacheable("films")
@@ -117,11 +102,7 @@ public class FilmServiceImpl implements FilmService {
         return true;
     }
 
-    /**
-     * Elimina una película por ID.
-     *
-     * @return true si la eliminación fue exitosa
-     */
+
     @Transactional
     @Override
     @CacheEvict(value = {"films", "film"}, allEntries = true)
@@ -130,27 +111,24 @@ public class FilmServiceImpl implements FilmService {
         Film film = filmRepository.findById(filmId)
                 .orElseThrow(() -> new EntityNotFoundException("Film not found"));
 
-        // Limpiar las asociaciones relacionadas
+
         film.getFilmCategories().clear();
         film.getFilmActors().clear();
         film.getInventories().clear();
 
-        // Guardar los cambios para actualizar las asociaciones en la base de datos
+
         filmRepository.save(film);
 
-        // Sincronizar la sesión de Hibernate para evitar problemas de caché
+
         entityManager.unwrap(Session.class).flush();
         entityManager.unwrap(Session.class).clear();
 
-        // Eliminar la película después de sincronizar
         filmRepository.deleteById(filmId);
 
-        return true; // Devuelve `true` para indicar éxito
+        return true;
     }
 
-    /**
-     * Mapea un DTO de creación/actualización a una entidad Film.
-     */
+
     private Film mapDtoToEntity(FilmCreateUpdateDTO dto, Film film) {
         // Mapeo de campos básicos
         film.setTitle(dto.getTitle());
@@ -163,12 +141,12 @@ public class FilmServiceImpl implements FilmService {
         film.setRating(dto.getRating());
         film.setSpecialFeatures(dto.getSpecialFeatures());
 
-        // Mapeo de idioma
+
         Language language = languageRepository.findById(dto.getLanguageId())
                 .orElseThrow(() -> new RuntimeException("Language not found with ID: " + dto.getLanguageId()));
         film.setLanguage(language);
 
-        // Mapeo de categorías
+
         if (dto.getCategoryIds() != null && !dto.getCategoryIds().isEmpty()) {
             List<Category> categories = categoryRepository.findAllById(dto.getCategoryIds());
             if (categories.size() != dto.getCategoryIds().size()) {

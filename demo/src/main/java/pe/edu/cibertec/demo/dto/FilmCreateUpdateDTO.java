@@ -3,12 +3,12 @@ package pe.edu.cibertec.demo.dto;
 import java.util.List;
 
 public class FilmCreateUpdateDTO {
-    private Long filmId; // Agregado para manejar el ID en edición
+    private Long filmId;
     private String title;
     private String description;
     private Integer releaseYear;
     private Long languageId;
-    private List<Long> categoryIds; // Para manejar las categorías seleccionadas
+    private List<Long> categoryIds;
 
     private Integer rentalDuration;
     private Double rentalRate;
@@ -17,7 +17,7 @@ public class FilmCreateUpdateDTO {
     private String rating;
     private String specialFeatures;
 
-    // Getters y Setters
+
     public Long getFilmId() {
         return filmId;
     }

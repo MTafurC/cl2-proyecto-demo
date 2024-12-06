@@ -8,7 +8,7 @@ public class FilmListDTO {
     private Double rentalRate;
     private String description; // Nueva propiedad añadida
 
-    // Constructor que incluye descripción
+
     public FilmListDTO(Long filmId, String title, String description, String languageName, Integer rentalDuration, Double rentalRate) {
         this.filmId = filmId;
         this.title = title;
@@ -17,28 +17,7 @@ public class FilmListDTO {
         this.rentalDuration = rentalDuration;
         this.rentalRate = rentalRate;
     }
-/*
-    // Constructor con todos los parámetros, incluida la nueva propiedad
-    public FilmListDTO(Long filmId, String title, String languageName, Integer rentalDuration, Double rentalRate, String description) {
-        this.filmId = filmId;
-        this.title = title;
-        this.languageName = languageName;
-        this.rentalDuration = rentalDuration;
-        this.rentalRate = rentalRate;
-        this.description = description; // Inicializamos la descripción
-    }
 
-    // Constructor sin descripción (opcional, en caso no siempre quieras inicializarla)
-    public FilmListDTO(Long filmId, String title, String languageName, Integer rentalDuration, Double rentalRate) {
-        this.filmId = filmId;
-        this.title = title;
-        this.languageName = languageName;
-        this.rentalDuration = rentalDuration;
-        this.rentalRate = rentalRate;
-    }
-
-
- */
     // Getters y Setters
     public Long getFilmId() {
         return filmId;
